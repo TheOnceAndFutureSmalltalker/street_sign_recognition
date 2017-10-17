@@ -127,6 +127,8 @@ These images are grabbed from Google images. I had to keep referencing signnames
 
 The signs were of varying sizes and the png images had 4 channels. I had to account for this in loading the data. After laoding and resizing, the 10 images are displayed along with the y vectors showing the true labels against which the predictions will be compared.
 
+The images are shown below in their original size (prior to processing) along with the actual and predicted feature value.
+
 #### JPG Images
 | Image | Actual | Pred |
 |-------|--------|------|
