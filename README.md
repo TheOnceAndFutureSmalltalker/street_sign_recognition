@@ -1,6 +1,6 @@
 # Street Sign Recognition
 These are the deliverables for Project 2 for Udacity's Self Driving Car Nanodegree.
-The code in this project builds, trains, and tests a convolutional neural network for identifying Germain street signs.
+The code in this project builds, trains, and tests a convolutional neural network for identifying German street signs.
 
 ## Deliverable Files
 
