@@ -43,49 +43,83 @@ I used numpy and matplotlib to plot the number of occurances of each sign in the
 
 <img src="https://github.com/TheOnceAndFutureSmalltalker/street_sign_recognition/blob/master/download/instances_count.png" />
 
-I then found 5 images at random from training set and displayed them to get an idea of what the training images looked like.
+I then found 5 images at random from training set and displayed them to get an idea of what the training images looked like.  The name of the signs are also provided. While the signs are centered, fill most of the image, and viewed from straight on, they appear dark and grainy.
 
+Image | Name | Index
+------|------|------
+<img src="https://github.com/TheOnceAndFutureSmalltalker/street_sign_recognition/blob/master/download/training_yield.png" /> | Yield | 13
+<img src="https://github.com/TheOnceAndFutureSmalltalker/street_sign_recognition/blob/master/download/training_general_caution.png" /> | General caution | 18
+<img src="https://github.com/TheOnceAndFutureSmalltalker/street_sign_recognition/blob/master/download/training_turn_right_ahead.png" /> | Turn right ahead | 33
+<img src="https://github.com/TheOnceAndFutureSmalltalker/street_sign_recognition/blob/master/download/training_end_of_no_passing.png" /> | End of no passing | 41
+<img src="https://github.com/TheOnceAndFutureSmalltalker/street_sign_recognition/blob/master/download/training_speed_limit_70.png" /> | Speed limit (70km/h) | 4
 
-###Design and Test a Model Architecture
+## Data Pre-processing
 
-####1. Describe how you preprocessed the image data. What techniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, and provide example images of the additional data. Then describe the characteristics of the augmented training set like number of images in the set, number of images for each class, etc.)
+The data is preprocessed first by converting the type to int32 from ubyte. The data is then normalized using (pixel - 128) / 128 so that each value is in interval (-1, 1). The data conversion was necessary because the ubyte will not go negative.
 
-As a first step, I decided to convert the images to grayscale because ...
+The training set was then randomly shuffled. This is not entirely necessary here since it will be shuffled again for each epoch.
 
-Here is an example of a traffic sign image before and after grayscaling.
+Finally a function is added for optionally manipulating the images with rotate and flip.
 
-![alt text][image2]
-
-As a last step, I normalized the image data because ...
-
-I decided to generate additional data because ... 
-
-To add more data to the the data set, I used the following techniques because ... 
-
-Here is an example of an original image and an augmented image:
-
-![alt text][image3]
-
-The difference between the original data set and the augmented data set is the following ... 
-
+A sample of before and after data was printed out to verify the operation and can be seen on the notebook.
 
 ## Model Architecture
 
-My final model consisted of the following layers:
+My final model consisted of a 5 layer LeNet described as follows:
 
 | Layer         		|     Description	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | Input         		| 32x32x3 RGB image   							| 
-| Convolution 3x3     	| 1x1 stride, same padding, outputs 32x32x64 	|
-| RELU					|												|
-| Max pooling	      	| 2x2 stride,  outputs 16x16x64 				|
-| Convolution 3x3	    | etc.      									|
-| Fully connected		| etc.        									|
-| Softmax				| etc.        									|
-|						|												|
-|						|												|
- 
+| Layer 1     	| 5 X 5  convolution, ReLU activation followed by 2 X 2 pooling for an output of 14 X 14 X 6 	|
+| Layer 2					|	5 X 5 convolution, ReLU activation, followed by 2 X 2 pooling for an output of 5 X 5 X 16 |
+| Layer 3 | flattened input to single dimension of 400, ReLU activaton, final output of 120 |
+| Layer 4 | fully connected layer, ReLU, final output of 84 |  				
+| Dropout	| optional dropout applied here	|
+| Layer 5	| fully connected layer final output of 43, which are the logits/prediction |        									|
 
+## Model Training
+
+### Batches
+The model is trained by dividing the training set into batches.  Each image in a batch is run through the model, then loss is calculated for the entire batch, and then run through back propagation.  The optimizer is the Adam optimizer as this generally gets better results than SGD. The batch size is configurable.  This pipeline is described below:
+
+### Pipeline
+1. use LeNet to calculate the logits, 
+2. calculate cross entropy with softmax and one hot encoding
+3. calculate the loss
+4. back propagate to update parameters using Adam optimizer
+
+### Epochs
+Each run through the entire training data set is an epoch and the number of epochs is configurable.  The model is run against the validation set for a measure of accuracy at the end of each epoch.  
+
+### Dropout
+Dropout can be included or excluded and the keep probability is configurable.
+
+### Learning Rate
+The learning rate is also configurable and may be static across all epochs or it may decay with each epoch by dividing the previous learning rate by a divisor which is also configurable.  I tried using some of the learning rate decay functions provided by TensorFlow but found them difficult.
+
+### Stop Training
+The training code includes early exit tests for two conditions 1) a very low accuracy rate that is not improving, 2) an accuracy rate that is very high > 0.99.
+
+### Model Save
+The model is saved at the end of a successful run.  Much experimentation was done without saving the model however.  I only started saving the model once I was close to a solution.
+
+### Training Approach
+The model actually ran just fine with inital settings.  I ran the model dozens of times however to experiment with different aspects of training.  The results did not seem too sensitive to learning rate except when accuracy become very high, then a smaller learning rate was more beneficial.  Therefor, I included an decaying learning rate to attain highest accuracy possible.   
+
+Batch size did seem to have quite an effect on accuracy.  128 did not produce results as well as 64.  I did not go lower than 64 thinking teh sample size would be too low and accuracy would not converge.  I did not go higher than 256 for fear of running out of memory.  
+
+I experimented some with image manipulation - rotation mostly.  This did not produce good results.  Very experimental.
+
+### Final Model
+The last saved model ended up with a validation accuracy 0.989.  This was achieved with a learning rate starting at 0.0015 and decaying by 5% with each epoch.  I ran 20 epochs which was usually more than enough to get accuracy above 0.98.  A dropout rate of 0.5 was used to prevent overfitting to the training data.
+
+## Testing
+The model was tested agains provided test data and additional images acquired form internet.
+
+### Testing Dataset
+The final model described above was run on the test data set just once for an accuracy of 0.941.
+
+## Additional Images
 
 ####3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
 
