@@ -1,0 +1,44 @@
+3,Speed limit (60km/h)
+speedlimit60.png
+https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Zeichen_274-60_-_Zul%C3%A4ssige_H%C3%B6chstgeschwindigkeit%2C_StVO_2017.svg/601px-Zeichen_274-60_-_Zul%C3%A4ssige_H%C3%B6chstgeschwindigkeit%2C_StVO_2017.svg.png
+
+27,Pedestrians
+pedestrians.png
+https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Zeichen_133-10_-_Fu%C3%9Fg%C3%A4nger_%28Aufstellung_rechts%29%2C_StVO_1992.svg/847px-Zeichen_133-10_-_Fu%C3%9Fg%C3%A4nger_%28Aufstellung_rechts%29%2C_StVO_1992.svg.png
+
+22,Bumpy road
+bumpyroad.png
+https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Zeichen_112_%E2%80%93_Unebene_Fahrbahn%2C_StVO_1970.svg/847px-Zeichen_112_%E2%80%93_Unebene_Fahrbahn%2C_StVO_1970.svg.png
+
+36,Go straight or right
+gostraightorright.png
+https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Zeichen_214_-_Vorgeschriebene_Fahrtrichtung%2C_Geradeaus_oder_rechts%2C_StVO_2017.svg/601px-Zeichen_214_-_Vorgeschriebene_Fahrtrichtung%2C_Geradeaus_oder_rechts%2C_StVO_2017.svg.png
+
+26,Traffic signals
+trafficsignals.png
+https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Zeichen_131_-_Lichtzeichenanlage%2C_StVO_1970.svg/847px-Zeichen_131_-_Lichtzeichenanlage%2C_StVO_1970.svg.png
+
+
+
+
+
+
+1,Speed limit (30km/h)
+speedlimit30.jpg
+http://c8.alamy.com/comp/G667W0/road-sign-speed-limit-30-kmh-zone-passau-bavaria-germany-G667W0.jpg
+
+27,Pedestrians
+pedestrians.jpg
+https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS42ed5gTIW2KMM-1HQEWmNB7Mhgwqtdu1QRXycGh2eqTbaygO8
+
+26,Traffic signals
+trafficsignals.jpg
+http://l7.alamy.com/zooms/35c28262e0654a12849364a4a8bb0b43/german-road-sign-traffic-signals-j2hwca.jpg
+
+15,No vehicles
+novehicles.jpg
+http://image.shutterstock.com/display_pic_with_logo/3869111/389840710/stock-photo-german-road-sign-no-vehicles-translation-access-to-neighbouring-construction-site-allowed-389840710.jpg
+
+18,General caution
+generalcaution.jpg
+http://c8.alamy.com/comp/CRDR2P/traffic-signs-achtung-unfallschwerpunkt-german-for-warning-accident-CRDR2P.jpg
