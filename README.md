@@ -6,10 +6,10 @@ The code in this project builds, trains, and tests a convolutional neural networ
 
 File | Description
 ------------ | -------------
-Traffic_Sign_Classifier.ipynb | Jupyter file of runnable code demonstrating lane line detection
-report.html | html version of the notebook viewable without a connection to Jupyter server
+Traffic_Sign_Classifier.ipynb | Jupyter file of runnable code demonstrating lane line detection and documentation explaining the data, architecture, training approach, testing, and results
+report.html | html version of the notebook mentioned above, viewable without a connection to Jupyter server (i.e., does not need a server, all images are inline, etc.)
 download folder | Additional images used for testing
-writeup.md | Description of the project and suggestions for improvement
+writeup.md | FUll description of the project and suggestions for improvement
 
 ## Instructions
 
