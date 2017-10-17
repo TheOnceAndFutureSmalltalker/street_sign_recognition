@@ -104,91 +104,62 @@ The training code includes early exit tests for two conditions 1) a very low acc
 The model is saved at the end of a successful run.  Much experimentation was done without saving the model however.  I only started saving the model once I was close to a solution.
 
 ### Training Approach
-The model actually ran just fine with inital settings.  I ran the model dozens of times however to experiment with different aspects of training.  The results did not seem too sensitive to learning rate except when accuracy become very high, then a smaller learning rate was more beneficial.  Therefor, I included an decaying learning rate to attain highest accuracy possible.   
+The model actually ran just fine with inital settings.  I ran the model dozens of times however to experiment with different aspects of training.  The results did not seem too sensitive to learning rate except when accuracy become very high, then a smaller learning rate was more beneficial.  Therefor, I included a decaying learning rate to attain highest accuracy possible.   
 
-Batch size did seem to have quite an effect on accuracy.  128 did not produce results as well as 64.  I did not go lower than 64 thinking teh sample size would be too low and accuracy would not converge.  I did not go higher than 256 for fear of running out of memory.  
+Batch size did seem to have quite an effect on accuracy.  128 did not produce results as well as 64.  I did not go lower than 64 thinking the sample size would be too low and accuracy would not converge.  I did not go higher than 256 for fear of running out of memory.  
 
 I experimented some with image manipulation - rotation mostly.  This did not produce good results.  Very experimental.
 
 ### Final Model
-The last saved model ended up with a validation accuracy 0.989.  This was achieved with a learning rate starting at 0.0015 and decaying by 5% with each epoch.  I ran 20 epochs which was usually more than enough to get accuracy above 0.98.  A dropout rate of 0.5 was used to prevent overfitting to the training data.
+The last saved model ended up with a validation accuracy 0.989.  This was achieved with the LeNet architecture described above, a batch size of 64, a learning rate starting at 0.0015 and decaying by 5% with each epoch.  I ran 20 epochs which was usually more than enough to get accuracy above 0.98.  A dropout rate of 0.5 was used to prevent overfitting to the training data.
 
 ## Testing
-The model was tested agains provided test data and additional images acquired form internet.
+The model was tested against provided test data and additional images acquired form internet.
 
 ### Testing Dataset
 The final model described above was run on the test data set just once for an accuracy of 0.941.
 
 ## Additional Images
 
-####3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
+I acquired two different sets of 5 images each from the internet.  One set are jpg and photos of real signs on the street. These have trees and clouds in background, are not necessarily centered, and might be skewed at an angle. The next set are png and are drawings of the signs like you might find in Adobe Illustrator for example.
 
-To train the model, I used an ....
+These images are grabbed from Google images. I had to keep referencing signnames.csv and a Wikipedia page on German Road Signs to make sure I had the correct signs and correctly labeled! Both sets have two of the same signs, the traffic signal sign and the pedestrians sign.
 
-####4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
+The signs were of varying sizes and the png images had 4 channels. I had to account for this in loading the data. After laoding and resizing, the 10 images are displayed along with the y vectors showing the true labels against which the predictions will be compared.
 
-My final model results were:
-* training set accuracy of ?
-* validation set accuracy of ? 
-* test set accuracy of ?
+#### JPG Images
+| Image | Actual | Pred |
+|-------|--------|------|
+| <img src="https://github.com/TheOnceAndFutureSmalltalker/street_sign_recognition/blob/master/download/speedlimit30.jpg" /> | 1 | 1 |
+| <img src="https://github.com/TheOnceAndFutureSmalltalker/street_sign_recognition/blob/master/download/pedestrians.jpg" /> | 27 | 18 |
+| <img src="https://github.com/TheOnceAndFutureSmalltalker/street_sign_recognition/blob/master/download/trafficsignals.jpg" /> | 26 | 1 |
+| <img src="https://github.com/TheOnceAndFutureSmalltalker/street_sign_recognition/blob/master/download/novehicles.jpg" /> | 15 | 26 |
+| <img src="https://github.com/TheOnceAndFutureSmalltalker/street_sign_recognition/blob/master/download/generalcaution.jpg" /> | 18 | 3 |
 
-If an iterative approach was chosen:
-* What was the first architecture that was tried and why was it chosen?
-* What were some problems with the initial architecture?
-* How was the architecture adjusted and why was it adjusted? Typical adjustments could include choosing a different model architecture, adding or taking away layers (pooling, dropout, convolution, etc), using an activation function or changing the activation function. One common justification for adjusting an architecture would be due to overfitting or underfitting. A high accuracy on the training set but low accuracy on the validation set indicates over fitting; a low accuracy on both sets indicates under fitting.
-* Which parameters were tuned? How were they adjusted and why?
-* What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model?
+#### PNG Images
+| Image | Actual | Pred |
+|-------|--------|------|
+| <img src="https://github.com/TheOnceAndFutureSmalltalker/street_sign_recognition/blob/master/download/speedlimit60.png" /> | 3 | 3 |
+| <img src="https://github.com/TheOnceAndFutureSmalltalker/street_sign_recognition/blob/master/download/pedestrians.png" /> | 27 | 27 |
+| <img src="https://github.com/TheOnceAndFutureSmalltalker/street_sign_recognition/blob/master/download/trafficsignals.png" /> | 26 | 26 |
+| <img src="https://github.com/TheOnceAndFutureSmalltalker/street_sign_recognition/blob/master/download/bumpyroad.png" /> | 22 | 22 |
+| <img src="https://github.com/TheOnceAndFutureSmalltalker/street_sign_recognition/blob/master/download/gostraightorright.png" /> | 36 | 36 |
 
-If a well known architecture was chosen:
-* What architecture was chosen?
-* Why did you believe it would be relevant to the traffic sign application?
-* How does the final model's accuracy on the training, validation and test set provide evidence that the model is working well?
- 
+### Prediction Analysis
 
-###Test a Model on New Images
+The png results were perfect which is not surprising since these are mostly ideal renditions of the signs! The jpg set results were 20% accurate, not good! This is understandable since the model was trained on centered, non-skewed, non-obstructed views of the signs.
 
-####1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
-
-Here are five German traffic signs that I found on the web:
-
-![alt text][image4] ![alt text][image5] ![alt text][image6] 
-![alt text][image7] ![alt text][image8]
-
-The first image might be difficult to classify because ...
-
-####2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
-
-Here are the results of the prediction:
-
-| Image			        |     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| Stop Sign      		| Stop sign   									| 
-| U-turn     			| U-turn 										|
-| Yield					| Yield											|
-| 100 km/h	      		| Bumpy Road					 				|
-| Slippery Road			| Slippery Road      							|
+### Softmax Analysis
 
 
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
+## Final Thoughts
 
-####3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
+It is disappointing that the jpg "real world" examples did not do better. Obviously, this model is not adequate for road use since the jpg images represent how road signs would appear to a camera mounted on a car.
 
-The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
+What is needed is a better data set to train on. A dataset where all images are captured from a car's camera - inlcude various angles, various backgrounds, are partially obstructed, etc. Training a model on such a dataset would probably require much more effort than what was expended on this lab. Probably a more robust architecture as well.
 
-For the first image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
+I like the idea of using 32 X 32 images since most road signs will be viewed from a distance and therefor only constitute a small piece of a larger image.
 
-| Probability         	|     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| .60         			| Stop sign   									| 
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
-
-
-For the second image ... 
-
-### (Optional) Visualizing the Neural Network (See Step 4 of the Ipython notebook for more details)
-####1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
+I did not get to the section on displaying the network state images, but I plan to do this later as I think it is interesting and revealing about what is actually going on.
 
 
