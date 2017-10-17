@@ -6,10 +6,10 @@ The code in this project builds, trains, and tests a convolutional neural networ
 
 File | Description
 ------------ | -------------
-Traffic_Sign_Classifier.ipynb | Jupyter file of runnable code demonstrating lane line detection and documentation explaining the data, architecture, training approach, testing, and results
-report.html | html version of the notebook mentioned above, viewable without a connection to Jupyter server (i.e., does not need a server, all images are inline, etc.)
-download folder | Additional images used for testing
-writeup.md | FUll description of the project and suggestions for improvement
+<a href="https://github.com/TheOnceAndFutureSmalltalker/street_sign_recognition/blob/master/Traffic_Sign_Classifier.ipynb">Traffic_Sign_Classifier.ipynb</a> | Jupyter file of runnable code demonstrating lane line detection and documentation explaining the data, architecture, training approach, testing, and results
+<a href="https://github.com/TheOnceAndFutureSmalltalker/street_sign_recognition/blob/master/report.html">report.html</a> | html version of the notebook mentioned above, viewable without a connection to Jupyter server (i.e., does not need a server, all images are inline, etc.)
+<a href="https://github.com/TheOnceAndFutureSmalltalker/street_sign_recognition/tree/master/download">download folder</a> | Additional images used for testing
+<a href="https://github.com/TheOnceAndFutureSmalltalker/street_sign_recognition/blob/master/writeup.md">writeup.md</a> | FUll description of the project and suggestions for improvement
 
 ## Instructions
 
