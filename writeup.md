@@ -1,9 +1,4 @@
-#**Traffic Sign Recognition** 
-
-##Writeup Template
-
-###You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
-
+# Traffic Sign Recognition
 ---
 
 **Build a Traffic Sign Recognition Project**
@@ -17,45 +12,39 @@ The goals / steps of this project are the following:
 * Summarize the results with a written report
 
 
-[//]: # (Image References)
+## Data Set Summary & Exploration
+The dataset is German Traffic Signs.  The dataset provided in a zip was already pickled and all images are at 32 X 32 X 3, eventhough the original images are larger.  The images have already been cropped and the sign is centered with adequate padding between the sign and the edge of image for edge detection methods.
 
-[image1]: ./examples/visualization.jpg "Visualization"
-[image2]: ./examples/grayscale.jpg "Grayscaling"
-[image3]: ./examples/random_noise.jpg "Random Noise"
-[image4]: ./examples/placeholder.png "Traffic Sign 1"
-[image5]: ./examples/placeholder.png "Traffic Sign 2"
-[image6]: ./examples/placeholder.png "Traffic Sign 3"
-[image7]: ./examples/placeholder.png "Traffic Sign 4"
-[image8]: ./examples/placeholder.png "Traffic Sign 5"
+The pickled data is a dictionary with 4 key/value pairs:
 
-## Rubric Points
-###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
+- `'features'` is a 4D array containing raw pixel data of the traffic sign images, (num examples, width, height, channels).
+- `'labels'` is a 1D array containing the label/class id of the traffic sign. The file `signnames.csv` contains id -> name mappings for each id.
+- `'sizes'` is a list containing tuples, (width, height) representing the original width and height the image.
+- `'coords'` is a list containing tuples, (x1, y1, x2, y2) representing coordinates of a bounding box around the sign in the image.
 
----
-###Writeup / README
+#### Note
+The video in the lab mentions that the data set does not have a validation set and to use a split from train.  However, when I unzipped the file, it did have a valiation set.  We caI set it up so that I can switch back and forth betwen the validation set provided and one split from training set to see if there are any changes in results.
 
-####1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. You can submit your writeup as markdown or pdf. You can use this template as a guide for writing the report. The submission includes the project code.
+### Data Summary
 
-You're reading it! and here is a link to my [project code](https://github.com/udacity/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb)
+I used simple python to calculate basic summary of data as it was read in from the source files:
 
-###Data Set Summary & Exploration
+* The size of training set is 34799
+* The size of the validation set is 4410
+* The size of test set is 12630
+* The shape of a traffic sign image is 32 X 32 X 3
+* The number of unique classes/labels in the data set is 43
 
-####1. Provide a basic summary of the data set. In the code, the analysis should be done using python, numpy and/or pandas methods rather than hardcoding results manually.
+However, when validaton set was optionally defined as a split of training, then the training set was 27839 images and the validaton set was 6960 images.
 
-I used the pandas library to calculate summary statistics of the traffic
-signs data set:
+### Data Visualization
 
-* The size of training set is ?
-* The size of the validation set is ?
-* The size of test set is ?
-* The shape of a traffic sign image is ?
-* The number of unique classes/labels in the data set is ?
+I used numpy and matplotlib to plot the number of occurances of each sign in the training dataset.  You can see that some signs are ten times more prevalent than others.
 
-####2. Include an exploratory visualization of the dataset.
+<img src="https://github.com/TheOnceAndFutureSmalltalker/street_sign_recognition/blob/master/download/instances_count.png" />
 
-Here is an exploratory visualization of the data set. It is a bar chart showing how the data ...
+I then found 5 images at random from training set and displayed them to get an idea of what the training images looked like.
 
-![alt text][image1]
 
 ###Design and Test a Model Architecture
 
@@ -80,7 +69,7 @@ Here is an example of an original image and an augmented image:
 The difference between the original data set and the augmented data set is the following ... 
 
 
-####2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
+## Model Architecture
 
 My final model consisted of the following layers:
 
