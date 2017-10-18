@@ -153,6 +153,7 @@ The png results were perfect which is not surprising since these are mostly idea
 
 ### Softmax Analysis
 
+A printout of the softmax analysis was performed showing top five probabilities for each of my ten images.  Its a little hard to read and I think a graph or just formatting the floats to 3 decimal places would be better.  I prefer the argmax on the logits since it gives the actual prediction.  The softmax results are provided on the jupyter notebook and report.html.
 
 ## Final Thoughts
 
