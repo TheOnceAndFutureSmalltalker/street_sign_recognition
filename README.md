@@ -13,4 +13,4 @@ File | Description
 
 ## Instructions
 
-Currently, this repository does not contain all required dependencies, support files, and instructions for actually running the jupyter notebook.  This to come later.  All results can be viewed on the html versoin of the notebook, report.html.
+Currently, this repository does not contain all required dependencies, support files, and instructions for actually running the jupyter notebook.  This to come later.  All results can be viewed on the html version of the notebook, report.html.
